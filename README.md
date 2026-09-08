@@ -6,7 +6,7 @@ Flux is currently at an MVP release-candidate stopping point. The first supporte
 
 ## Installation
 
-These steps install Flux from source and run it as a `systemd` service on an Ubuntu server. Replace `v0.1.0` with the release tag you want to deploy.
+These steps install Flux from source and run it as a `systemd` service on an Ubuntu server. Replace `v0.1.1` with the release tag you want to deploy.
 
 1. Install the required operating-system packages:
 
@@ -26,7 +26,7 @@ sudo adduser --system --group --no-create-home --home /opt/zoclee/flux flux
 sudo mkdir -p /opt/zoclee
 sudo git clone https://github.com/Zoclee/flux.git /opt/zoclee/flux
 cd /opt/zoclee/flux
-sudo git checkout v0.1.0
+sudo git checkout v0.1.1
 sudo chown -R flux:flux /opt/zoclee/flux
 sudo -u flux composer install --no-dev --optimize-autoloader
 ```

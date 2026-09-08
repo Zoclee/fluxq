@@ -2,7 +2,7 @@
 
 All notable changes to Flux will be documented in this file.
 
-## [0.2.0] - Pending
+## [0.1.1] - 8 Sep 2026
 
 ### Changed
 

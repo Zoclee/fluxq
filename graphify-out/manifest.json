@@ -966,9 +966,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1787772483.678692,
-    "seen": 1787772536.181287,
-    "ast_hash": "3798aeef0a5517edc2401c489851b77e",
+    "mtime": 1788888808.6001427,
+    "seen": 1788888877.4938025,
+    "ast_hash": "1eb0307bf7c8112a132494e84972b686",
     "semantic_hash": ""
   },
   "docs/mvp-smoke-test.md": {
@@ -984,9 +984,9 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1788888421.767144,
-    "seen": 1788888508.96428,
-    "ast_hash": "afcdcfd6047b5c22fe7884395887a7d0",
+    "mtime": 1788888746.7710388,
+    "seen": 1788888877.4938025,
+    "ast_hash": "210d7427e6fec455e090037e5fc9f807",
     "semantic_hash": ""
   }
 }

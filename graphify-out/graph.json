@@ -19743,14 +19743,14 @@
       "source_location": "L18"
     },
     {
-      "id": "changelog_0_2_0_pending",
-      "label": "[0.2.0] - Pending",
+      "id": "changelog_0_1_1_8_sep_2026",
+      "label": "[0.1.1] - 8 Sep 2026",
       "_origin": "ast",
       "community": 68,
       "community_name": "Changelog",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "[0.2.0] - pending",
+      "norm_label": "[0.1.1] - 8 sep 2026",
       "source_file": "CHANGELOG.md",
       "source_location": "L5"
     },
@@ -66168,7 +66168,7 @@
       "weight": 1.0
     },
     {
-      "source": "changelog_0_2_0_pending",
+      "source": "changelog_0_1_1_8_sep_2026",
       "target": "changelog_changed",
       "relation": "contains",
       "_origin": "ast",
@@ -66224,7 +66224,7 @@
     },
     {
       "source": "changelog_changelog",
-      "target": "changelog_0_2_0_pending",
+      "target": "changelog_0_1_1_8_sep_2026",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -84512,5 +84512,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2c8b9b2b083686c610337880498d2b303a630590"
+  "built_at_commit": "e9b7d492b162f9de95231d76c3ba983401c568a0"
 }

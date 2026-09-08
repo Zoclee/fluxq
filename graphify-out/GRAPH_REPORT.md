@@ -1,7 +1,7 @@
-# Graph Report - flux  (2026-08-26)
+# Graph Report - flux  (2026-09-08)
 
 ## Corpus Check
-- 165 files · ~66,353 words
+- 165 files · ~66,361 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2c8b9b2b`
+- Built from commit: `e9b7d492`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -218,7 +218,7 @@ Nodes (4): Flux\Runtime\RuntimeComponent, Flux\Runtime\RuntimeDrainingComponent,
 
 ### Community 68 - "Changelog"
 Cohesion: 0.15
-Nodes (12): [0.1.0] - 25 Aug 2026, [0.1.0-RC1] - 24 Aug 2026, [0.1.0-RC2] - 24 Aug 2026, [0.1.0-RC3] - 24 Aug 2026, [0.2.0] - Pending, Added, Changed, Changed (+4 more)
+Nodes (12): [0.1.0] - 25 Aug 2026, [0.1.0-RC1] - 24 Aug 2026, [0.1.0-RC2] - 24 Aug 2026, [0.1.0-RC3] - 24 Aug 2026, [0.1.1] - 8 Sep 2026, Added, Changed, Changed (+4 more)
 
 ### Community 72 - "Destination"
 Cohesion: 0.27
