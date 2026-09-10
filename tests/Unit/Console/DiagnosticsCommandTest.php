@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Console;
+namespace FluxQ\Tests\Unit\Console;
 
-use Flux\Console\Commands\ConnectionListCommand;
-use Flux\Console\Commands\ConsumerListCommand;
-use Flux\Console\Commands\HealthCommand;
-use Flux\Console\Commands\ReadinessCommand;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Console\Commands\ConnectionListCommand;
+use FluxQ\Console\Commands\ConsumerListCommand;
+use FluxQ\Console\Commands\HealthCommand;
+use FluxQ\Console\Commands\ReadinessCommand;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -67,7 +67,7 @@ final class DiagnosticsCommandTest extends TestCase
         [$exitCode, $output] = $this->runCommand(new HealthCommand(new FakeRuntimeDiagnostics(unavailable: true)));
 
         self::assertSame(1, $exitCode);
-        self::assertStringContainsString('Flux Health', $output);
+        self::assertStringContainsString('FluxQ Health', $output);
         self::assertStringContainsString('Runtime: unavailable', $output);
     }
 

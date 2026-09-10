@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Broker;
+namespace FluxQ\Tests\Unit\Broker;
 
-use Flux\Broker\PublishRequest;
+use FluxQ\Broker\PublishRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

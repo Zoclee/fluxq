@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Flux\Protocol\Amqp;
+namespace FluxQ\Protocol\Amqp;
 
-use Flux\Broker\AuthenticationService;
-use Flux\Broker\AuthorizationService;
-use Flux\Broker\Broker;
-use Flux\Broker\ResourceLimits;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeComponent;
-use Flux\Runtime\RuntimeDrainingComponent;
+use FluxQ\Broker\AuthenticationService;
+use FluxQ\Broker\AuthorizationService;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeComponent;
+use FluxQ\Runtime\RuntimeDrainingComponent;
 use RuntimeException;
 
 final class AmqpListener implements RuntimeDrainingComponent

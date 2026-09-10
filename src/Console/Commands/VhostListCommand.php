@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Console\Table;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Console\Table;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use Throwable;
 
 final readonly class VhostListCommand

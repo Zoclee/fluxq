@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Protocol\Amqp;
+namespace FluxQ\Tests\Integration\Protocol\Amqp;
 
-use Flux\Broker\Broker;
-use Flux\Broker\Authorizer;
-use Flux\Broker\Authenticator;
-use Flux\Broker\DestinationType;
-use Flux\Broker\PublishRequest;
-use Flux\Broker\ResourceLimitException;
-use Flux\Broker\ResourceLimits;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\RoutingSourceRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\UserRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Protocol\Amqp\AmqpConnection;
-use Flux\Protocol\Amqp\AmqpListener;
-use Flux\Protocol\Amqp\Frame;
-use Flux\Protocol\Amqp\FrameCodec;
-use Flux\Runtime\ConnectionRegistry;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\Authorizer;
+use FluxQ\Broker\Authenticator;
+use FluxQ\Broker\DestinationType;
+use FluxQ\Broker\PublishRequest;
+use FluxQ\Broker\ResourceLimitException;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\RoutingSourceRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Protocol\Amqp\AmqpConnection;
+use FluxQ\Protocol\Amqp\AmqpListener;
+use FluxQ\Protocol\Amqp\Frame;
+use FluxQ\Protocol\Amqp\FrameCodec;
+use FluxQ\Runtime\ConnectionRegistry;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -45,9 +45,9 @@ final class AmqpTopologyTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for AMQP topology integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run AMQP topology integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run AMQP topology integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -1146,7 +1146,7 @@ final class AmqpTopologyTest extends TestCase
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

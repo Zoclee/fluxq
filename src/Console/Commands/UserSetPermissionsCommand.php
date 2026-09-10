@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\UserRepository;
 use Throwable;
 
 final readonly class UserSetPermissionsCommand
@@ -28,7 +28,7 @@ final readonly class UserSetPermissionsCommand
         $read = $arguments[4] ?? null;
 
         if ($username === '' || $virtualHost === '' || $configure === null || $write === null || $read === null) {
-            $this->write($output, "Usage: flux user:set-permissions <username> <vhost> <configure> <write> <read>\n");
+            $this->write($output, "Usage: fluxq user:set-permissions <username> <vhost> <configure> <write> <read>\n");
 
             return 1;
         }

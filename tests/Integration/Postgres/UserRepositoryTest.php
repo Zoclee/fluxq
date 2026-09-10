@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
-use Flux\Broker\Authenticator;
-use Flux\Broker\AuthorizationPermission;
-use Flux\Broker\Authorizer;
-use Flux\Console\Commands\UserClearPermissionsCommand;
-use Flux\Console\Commands\UserGrantVhostCommand;
-use Flux\Console\Commands\UserListCommand;
-use Flux\Console\Commands\UserListPermissionsCommand;
-use Flux\Console\Commands\UserListVhostsCommand;
-use Flux\Console\Commands\UserSetPermissionsCommand;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\UserRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Broker\Authenticator;
+use FluxQ\Broker\AuthorizationPermission;
+use FluxQ\Broker\Authorizer;
+use FluxQ\Console\Commands\UserClearPermissionsCommand;
+use FluxQ\Console\Commands\UserGrantVhostCommand;
+use FluxQ\Console\Commands\UserListCommand;
+use FluxQ\Console\Commands\UserListPermissionsCommand;
+use FluxQ\Console\Commands\UserListVhostsCommand;
+use FluxQ\Console\Commands\UserSetPermissionsCommand;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use PDO;
 use PDOException;
 use PHPUnit\Framework\Attributes\Before;
@@ -35,9 +35,9 @@ final class UserRepositoryTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL user integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL user integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL user integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -137,7 +137,7 @@ final class UserRepositoryTest extends TestCase
 
         [$usageExitCode, $usageOutput] = $this->runArgumentCommand($command, ['alice', 'extra']);
         self::assertSame(1, $usageExitCode);
-        self::assertSame("Usage: flux user:list-vhosts <username>\n", $usageOutput);
+        self::assertSame("Usage: fluxq user:list-vhosts <username>\n", $usageOutput);
     }
 
     public function testGrantVhostThenListVhostsShowsGrantWithoutPermissionRows(): void
@@ -308,7 +308,7 @@ final class UserRepositoryTest extends TestCase
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

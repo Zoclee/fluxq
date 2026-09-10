@@ -2,41 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console;
+namespace FluxQ\Console;
 
-use Flux\Broker\ResourceLimits;
-use Flux\Console\Commands\DbStatusCommand;
-use Flux\Console\Commands\BindingListCommand;
-use Flux\Console\Commands\BrokerStatsCommand;
-use Flux\Console\Commands\ConnectionListCommand;
-use Flux\Console\Commands\ConsumerListCommand;
-use Flux\Console\Commands\HealthCommand;
-use Flux\Console\Commands\MigrateCommand;
-use Flux\Console\Commands\MessagePeekCommand;
-use Flux\Console\Commands\QueueListCommand;
-use Flux\Console\Commands\QueueShowCommand;
-use Flux\Console\Commands\ReadinessCommand;
-use Flux\Console\Commands\ReadOnlyDatabaseContext;
-use Flux\Console\Commands\ServerStartCommand;
-use Flux\Console\Commands\SubscriptionListCommand;
-use Flux\Console\Commands\UserCreateCommand;
-use Flux\Console\Commands\UserClearPermissionsCommand;
-use Flux\Console\Commands\UserGrantVhostCommand;
-use Flux\Console\Commands\UserListCommand;
-use Flux\Console\Commands\UserListPermissionsCommand;
-use Flux\Console\Commands\UserListVhostsCommand;
-use Flux\Console\Commands\UserSetPermissionsCommand;
-use Flux\Console\Commands\VhostCreateCommand;
-use Flux\Console\Commands\VhostListCommand;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Runtime\RuntimeDiagnosticsClient;
-use Flux\Support\Dotenv;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Console\Commands\DbStatusCommand;
+use FluxQ\Console\Commands\BindingListCommand;
+use FluxQ\Console\Commands\BrokerStatsCommand;
+use FluxQ\Console\Commands\ConnectionListCommand;
+use FluxQ\Console\Commands\ConsumerListCommand;
+use FluxQ\Console\Commands\HealthCommand;
+use FluxQ\Console\Commands\MigrateCommand;
+use FluxQ\Console\Commands\MessagePeekCommand;
+use FluxQ\Console\Commands\QueueListCommand;
+use FluxQ\Console\Commands\QueueShowCommand;
+use FluxQ\Console\Commands\ReadinessCommand;
+use FluxQ\Console\Commands\ReadOnlyDatabaseContext;
+use FluxQ\Console\Commands\ServerStartCommand;
+use FluxQ\Console\Commands\SubscriptionListCommand;
+use FluxQ\Console\Commands\UserCreateCommand;
+use FluxQ\Console\Commands\UserClearPermissionsCommand;
+use FluxQ\Console\Commands\UserGrantVhostCommand;
+use FluxQ\Console\Commands\UserListCommand;
+use FluxQ\Console\Commands\UserListPermissionsCommand;
+use FluxQ\Console\Commands\UserListVhostsCommand;
+use FluxQ\Console\Commands\UserSetPermissionsCommand;
+use FluxQ\Console\Commands\VhostCreateCommand;
+use FluxQ\Console\Commands\VhostListCommand;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Runtime\RuntimeDiagnosticsClient;
+use FluxQ\Support\Dotenv;
 use Throwable;
 
 final class Application
 {
-    public const VERSION = '0.1.0';
+    public const VERSION = '0.2.0';
 
     public function __construct(
         private readonly ?string $projectRoot = null
@@ -88,14 +88,14 @@ final class Application
     private function showHelp(mixed $output): int
     {
         $this->write($output, sprintf(<<<'HELP'
-Flux %s
+FluxQ %s
 
 Usage:
-  flux <command>
+  fluxq <command>
 
 Available commands:
   help                  Display this help message
-  --version             Display the Flux version
+  --version             Display the FluxQ version
 
 Database:
   db:status             Show PostgreSQL connection and migration status
@@ -103,8 +103,8 @@ Database:
 
 Server:
   health                Check local runtime health
-  readiness             Check whether Flux can accept broker traffic
-  server:start          Start the Flux broker runtime
+  readiness             Check whether FluxQ can accept broker traffic
+  server:start          Start the FluxQ broker runtime
   connection:list       List active runtime connections
   consumer:list         List active runtime consumers
 
@@ -135,7 +135,7 @@ HELP, self::VERSION));
      */
     private function showVersion(mixed $output): int
     {
-        $this->write($output, sprintf("Flux %s\n", self::VERSION));
+        $this->write($output, sprintf("FluxQ %s\n", self::VERSION));
 
         return 0;
     }
@@ -168,7 +168,7 @@ HELP, self::VERSION));
             [$projectRoot, $config] = $this->projectContext();
             $databaseConfig = ConnectionConfig::fromArray($config['database']);
         } catch (Throwable $exception) {
-            $this->write($output, "Flux Database Migrations\n\n");
+            $this->write($output, "FluxQ Database Migrations\n\n");
             $this->write($output, sprintf("ERROR: %s\n", $exception->getMessage()));
 
             return 1;
@@ -189,7 +189,7 @@ HELP, self::VERSION));
             [$projectRoot, $config] = $this->projectContext();
             $databaseConfig = ConnectionConfig::fromArray($config['database']);
         } catch (Throwable $exception) {
-            $this->write($output, "Flux Database Status\n\n");
+            $this->write($output, "FluxQ Database Status\n\n");
             $this->write($output, "Status:   disconnected\n\n");
             $this->write($output, sprintf("ERROR: %s\n", $exception->getMessage()));
 
@@ -216,7 +216,7 @@ HELP, self::VERSION));
             $diagnosticsConfig = $config['diagnostics'] ?? [];
             $shutdownConfig = $config['shutdown'] ?? [];
         } catch (Throwable $exception) {
-            $this->write($output, "Flux Message Broker\n\n");
+            $this->write($output, "FluxQ Message Broker\n\n");
             $this->write($output, "Status:   stopped\n\n");
             $this->write($output, sprintf("ERROR: %s\n", $exception->getMessage()));
 
@@ -252,7 +252,7 @@ HELP, self::VERSION));
             [, $config] = $this->projectContext();
             $diagnosticsConfig = $config['diagnostics'] ?? [];
         } catch (Throwable $exception) {
-            $this->write($output, "Flux Health\n\n");
+            $this->write($output, "FluxQ Health\n\n");
             $this->write($output, "Runtime: unavailable\n");
             $this->write($output, sprintf("ERROR: %s\n", $exception->getMessage()));
 
@@ -274,7 +274,7 @@ HELP, self::VERSION));
             $amqpConfig = $config['amqp'] ?? [];
             $amqpTlsConfig = is_array($amqpConfig['tls'] ?? null) ? $amqpConfig['tls'] : [];
         } catch (Throwable $exception) {
-            $this->write($output, "Flux Readiness\n\n");
+            $this->write($output, "FluxQ Readiness\n\n");
             $this->write($output, "Ready: no\n");
             $this->write($output, sprintf("Reason: %s\n", $exception->getMessage()));
 
@@ -514,7 +514,7 @@ HELP, self::VERSION));
     {
         $projectRoot = $this->projectRoot ?? dirname(__DIR__, 2);
         Dotenv::load($projectRoot . '/.env');
-        $config = require $projectRoot . '/config/flux.php';
+        $config = require $projectRoot . '/config/fluxq.php';
 
         return [$projectRoot, $config];
     }

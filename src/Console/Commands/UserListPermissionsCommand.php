@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Console\Table;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Console\Table;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\UserRepository;
 use Throwable;
 
 final readonly class UserListPermissionsCommand
@@ -24,7 +24,7 @@ final readonly class UserListPermissionsCommand
     {
         $username = $arguments[0] ?? '';
         if ($username === '') {
-            $this->write($output, "Usage: flux user:list-permissions <username>\n");
+            $this->write($output, "Usage: fluxq user:list-permissions <username>\n");
 
             return 1;
         }

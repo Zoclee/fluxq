@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Broker;
+namespace FluxQ\Tests\Unit\Broker;
 
-use Flux\Broker\ResourceLimits;
+use FluxQ\Broker\ResourceLimits;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

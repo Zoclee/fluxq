@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Flux\Broker;
+namespace FluxQ\Broker;
 
 use Closure;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\RoutingSourceRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Runtime\ExclusiveQueueRegistry;
-use Flux\Support\Uuid;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\RoutingSourceRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Runtime\ExclusiveQueueRegistry;
+use FluxQ\Support\Uuid;
 use PDOException;
 use RuntimeException;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Runtime;
+namespace FluxQ\Tests\Unit\Runtime;
 
 use DateTimeImmutable;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\RuntimeConnection;
-use Flux\Runtime\RuntimeRegistrationException;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\RuntimeConnection;
+use FluxQ\Runtime\RuntimeRegistrationException;
 use PHPUnit\Framework\TestCase;
 
 final class ConnectionRegistryTest extends TestCase

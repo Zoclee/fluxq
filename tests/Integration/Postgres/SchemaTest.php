@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\MigrationFailure;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\MigrationFailure;
+use FluxQ\Persistence\Postgres\Migrator;
 use PDO;
 use PDOException;
 use PHPUnit\Framework\Attributes\Before;
@@ -25,10 +25,10 @@ final class SchemaTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL schema integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL schema integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -286,7 +286,7 @@ SQL,
         $this->pdo->exec('CREATE SCHEMA public');
     }
 
-    private function applyMigrations(): \Flux\Persistence\Postgres\MigrationResult
+    private function applyMigrations(): \FluxQ\Persistence\Postgres\MigrationResult
     {
         return (new Migrator($this->connection, dirname(__DIR__, 3) . '/database/migrations'))->migrate();
     }
@@ -375,7 +375,7 @@ SQL,
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }
@@ -386,7 +386,7 @@ SQL,
      */
     private function createTemporaryMigrationDirectory(array $migrations): string
     {
-        $directory = sys_get_temp_dir() . '/flux_migrations_' . bin2hex(random_bytes(8));
+        $directory = sys_get_temp_dir() . '/fluxq_migrations_' . bin2hex(random_bytes(8));
 
         if (!mkdir($directory) && !is_dir($directory)) {
             throw new RuntimeException(sprintf('Could not create temporary migration directory: %s', $directory));

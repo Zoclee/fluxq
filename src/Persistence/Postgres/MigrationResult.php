@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 final readonly class MigrationResult
 {

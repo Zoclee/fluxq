@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Broker\Broker;
-use Flux\Broker\Authenticator;
-use Flux\Broker\Authorizer;
-use Flux\Broker\ResourceLimits;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\RoutingSourceRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\UserRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Protocol\Amqp\AmqpListener;
-use Flux\Protocol\Amqp\AmqpTlsConfig;
-use Flux\Runtime\BrokerRuntime;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeDiagnosticsServer;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\Authenticator;
+use FluxQ\Broker\Authorizer;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\RoutingSourceRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Protocol\Amqp\AmqpListener;
+use FluxQ\Protocol\Amqp\AmqpTlsConfig;
+use FluxQ\Runtime\BrokerRuntime;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeDiagnosticsServer;
 use Throwable;
 
 final class ServerStartCommand
@@ -114,7 +114,7 @@ final class ServerStartCommand
      */
     public function run(mixed $output): int
     {
-        $this->write($output, "Flux Message Broker\n\n");
+        $this->write($output, "FluxQ Message Broker\n\n");
         $this->write($output, sprintf("Version:  %s\n", $this->version));
         $this->write($output, "Status:   starting\n");
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use RuntimeException;
 
@@ -16,19 +16,19 @@ final readonly class ConnectionConfig
         public ?string $password
     ) {
         if ($this->host === '') {
-            throw new RuntimeException('FLUX_DB_HOST is not configured.');
+            throw new RuntimeException('FLUXQ_DB_HOST is not configured.');
         }
 
         if ($this->port <= 0) {
-            throw new RuntimeException('FLUX_DB_PORT must be a positive integer.');
+            throw new RuntimeException('FLUXQ_DB_PORT must be a positive integer.');
         }
 
         if ($this->database === '') {
-            throw new RuntimeException('FLUX_DB_NAME is not configured.');
+            throw new RuntimeException('FLUXQ_DB_NAME is not configured.');
         }
 
         if ($this->user === '') {
-            throw new RuntimeException('FLUX_DB_USER is not configured.');
+            throw new RuntimeException('FLUXQ_DB_USER is not configured.');
         }
     }
 
@@ -44,10 +44,10 @@ final readonly class ConnectionConfig
     public static function fromArray(array $config): self
     {
         return new self(
-            self::stringValue($config, 'host', 'FLUX_DB_HOST'),
+            self::stringValue($config, 'host', 'FLUXQ_DB_HOST'),
             (int) ($config['port'] ?? 0),
-            self::stringValue($config, 'name', 'FLUX_DB_NAME'),
-            self::stringValue($config, 'user', 'FLUX_DB_USER'),
+            self::stringValue($config, 'name', 'FLUXQ_DB_NAME'),
+            self::stringValue($config, 'user', 'FLUXQ_DB_USER'),
             isset($config['password']) && is_string($config['password']) ? $config['password'] : null
         );
     }

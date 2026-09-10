@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Protocol\Amqp;
+namespace FluxQ\Tests\Integration\Protocol\Amqp;
 
-use Flux\Broker\AuthenticatedUser;
-use Flux\Broker\AuthenticationResult;
-use Flux\Broker\AuthenticationService;
-use Flux\Broker\ResourceLimits;
-use Flux\Protocol\Amqp\AmqpConnection;
-use Flux\Protocol\Amqp\AmqpListener;
-use Flux\Protocol\Amqp\AmqpTlsConfig;
-use Flux\Protocol\Amqp\Frame;
-use Flux\Protocol\Amqp\FrameCodec;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Tests\Fixtures\TlsCertificate;
+use FluxQ\Broker\AuthenticatedUser;
+use FluxQ\Broker\AuthenticationResult;
+use FluxQ\Broker\AuthenticationService;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Protocol\Amqp\AmqpConnection;
+use FluxQ\Protocol\Amqp\AmqpListener;
+use FluxQ\Protocol\Amqp\AmqpTlsConfig;
+use FluxQ\Protocol\Amqp\Frame;
+use FluxQ\Protocol\Amqp\FrameCodec;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Tests\Fixtures\TlsCertificate;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

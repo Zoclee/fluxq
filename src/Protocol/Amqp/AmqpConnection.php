@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Flux\Protocol\Amqp;
+namespace FluxQ\Protocol\Amqp;
 
 use DateTimeImmutable;
-use Flux\Broker\AcknowledgeRequest;
-use Flux\Broker\AuthenticatedUser;
-use Flux\Broker\AuthenticationService;
-use Flux\Broker\AuthorizationPermission;
-use Flux\Broker\AuthorizationService;
-use Flux\Broker\Broker;
-use Flux\Broker\Delivery;
-use Flux\Broker\Message;
-use Flux\Broker\PublishRequest;
-use Flux\Broker\RejectRequest;
-use Flux\Broker\ReleaseRequest;
-use Flux\Broker\ReserveRequest;
-use Flux\Broker\ResourceLimitException;
-use Flux\Broker\ResourceLimits;
-use Flux\Broker\RoutingSourceType;
-use Flux\Broker\TopologyException;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeConnection;
-use Flux\Runtime\RuntimeConsumer;
+use FluxQ\Broker\AcknowledgeRequest;
+use FluxQ\Broker\AuthenticatedUser;
+use FluxQ\Broker\AuthenticationService;
+use FluxQ\Broker\AuthorizationPermission;
+use FluxQ\Broker\AuthorizationService;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\Delivery;
+use FluxQ\Broker\Message;
+use FluxQ\Broker\PublishRequest;
+use FluxQ\Broker\RejectRequest;
+use FluxQ\Broker\ReleaseRequest;
+use FluxQ\Broker\ReserveRequest;
+use FluxQ\Broker\ResourceLimitException;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Broker\RoutingSourceType;
+use FluxQ\Broker\TopologyException;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeConnection;
+use FluxQ\Runtime\RuntimeConsumer;
 use RuntimeException;
 use Throwable;
 
@@ -423,7 +423,7 @@ final class AmqpConnection
                 default => $this->sendChannelError(
                     $frame->channel,
                     540,
-                    'NOT_IMPLEMENTED - AMQP method is not supported by Flux yet',
+                    'NOT_IMPLEMENTED - AMQP method is not supported by FluxQ yet',
                     $classId,
                     $methodId
                 ),

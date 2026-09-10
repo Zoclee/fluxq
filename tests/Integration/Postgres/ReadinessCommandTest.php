@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
-use Flux\Console\Commands\ReadinessCommand;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Console\Commands\ReadinessCommand;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -24,10 +24,10 @@ final class ReadinessCommandTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL readiness integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL readiness integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -94,7 +94,7 @@ final class ReadinessCommandTest extends TestCase
 
     private function temporaryMigrationDirectory(): string
     {
-        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'flux-migrations-' . bin2hex(random_bytes(8));
+        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'fluxq-migrations-' . bin2hex(random_bytes(8));
 
         if (!mkdir($directory) && !is_dir($directory)) {
             self::fail(sprintf('Could not create temporary migration directory: %s', $directory));
@@ -115,7 +115,7 @@ final class ReadinessCommandTest extends TestCase
 
         if (!is_string($databaseName) || !str_contains($databaseName, 'test')) {
             self::fail(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 is_scalar($databaseName) ? (string) $databaseName : 'unknown'
             ));
         }

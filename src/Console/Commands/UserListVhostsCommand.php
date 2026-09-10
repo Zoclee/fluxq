@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Console\Table;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Console\Table;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\UserRepository;
 use Throwable;
 
 final readonly class UserListVhostsCommand
@@ -23,7 +23,7 @@ final readonly class UserListVhostsCommand
     public function run(array $arguments, mixed $output): int
     {
         if (count($arguments) !== 1 || ($arguments[0] ?? '') === '') {
-            $this->write($output, "Usage: flux user:list-vhosts <username>\n");
+            $this->write($output, "Usage: fluxq user:list-vhosts <username>\n");
 
             return 1;
         }

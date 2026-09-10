@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\MigrationFailure;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\MigrationFailure;
+use FluxQ\Persistence\Postgres\Migrator;
 use Throwable;
 
 final readonly class MigrateCommand
@@ -23,7 +23,7 @@ final readonly class MigrateCommand
      */
     public function run(mixed $output): int
     {
-        $this->write($output, "Flux Database Migrations\n\n");
+        $this->write($output, "FluxQ Database Migrations\n\n");
 
         try {
             $connection = Connection::fromConfig($this->config);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Broker;
+namespace FluxQ\Broker;
 
 enum AuthorizationPermission: string
 {

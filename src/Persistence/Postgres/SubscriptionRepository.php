@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Broker\Subscription;
+use FluxQ\Broker\Subscription;
 use InvalidArgumentException;
 use JsonException;
 use PDO;

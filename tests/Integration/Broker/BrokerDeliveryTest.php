@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Broker;
+namespace FluxQ\Tests\Integration\Broker;
 
 use DateTimeImmutable;
-use Flux\Broker\AcknowledgeRequest;
-use Flux\Broker\Broker;
-use Flux\Broker\DeliveryState;
-use Flux\Broker\Destination;
-use Flux\Broker\DestinationNotFoundException;
-use Flux\Broker\RejectRequest;
-use Flux\Broker\ReleaseRequest;
-use Flux\Broker\ReserveRequest;
-use Flux\Broker\RetryPolicy;
-use Flux\Broker\SubscriptionNotFoundException;
-use Flux\Broker\TopologyException;
-use Flux\Broker\VirtualHostNotFoundException;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DeliveryStateException;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Broker\AcknowledgeRequest;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\Destination;
+use FluxQ\Broker\DestinationNotFoundException;
+use FluxQ\Broker\RejectRequest;
+use FluxQ\Broker\ReleaseRequest;
+use FluxQ\Broker\ReserveRequest;
+use FluxQ\Broker\RetryPolicy;
+use FluxQ\Broker\SubscriptionNotFoundException;
+use FluxQ\Broker\TopologyException;
+use FluxQ\Broker\VirtualHostNotFoundException;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DeliveryStateException;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -51,10 +51,10 @@ final class BrokerDeliveryTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL broker integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL broker integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -226,7 +226,7 @@ final class BrokerDeliveryTest extends TestCase
 
     public function testConcurrentReservationsThroughBrokerCannotClaimTheSameDelivery(): void
     {
-        $dsn = (string) getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = (string) getenv('FLUXQ_TEST_DATABASE_URL');
         [$destination, $subscriptionId] = $this->createDestinationAndSubscription('orders', 'worker-a');
         $first = $this->createPendingDelivery($destination, 'first');
         $second = $this->createPendingDelivery($destination, 'second');
@@ -496,7 +496,7 @@ SQL);
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Runtime;
+namespace FluxQ\Runtime;
 
 use Closure;
-use Flux\Broker\Broker;
+use FluxQ\Broker\Broker;
 use RuntimeException;
 
 final class BrokerRuntime

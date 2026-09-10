@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Flux\Console\Commands\BindingListCommand;
-use Flux\Console\Commands\BrokerStatsCommand;
-use Flux\Console\Commands\MessagePeekCommand;
-use Flux\Console\Commands\QueueListCommand;
-use Flux\Console\Commands\QueueShowCommand;
-use Flux\Console\Commands\ReadOnlyDatabaseContext;
-use Flux\Console\Commands\SubscriptionListCommand;
-use Flux\Console\Commands\VhostCreateCommand;
-use Flux\Console\Commands\VhostListCommand;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Console\Commands\BindingListCommand;
+use FluxQ\Console\Commands\BrokerStatsCommand;
+use FluxQ\Console\Commands\MessagePeekCommand;
+use FluxQ\Console\Commands\QueueListCommand;
+use FluxQ\Console\Commands\QueueShowCommand;
+use FluxQ\Console\Commands\ReadOnlyDatabaseContext;
+use FluxQ\Console\Commands\SubscriptionListCommand;
+use FluxQ\Console\Commands\VhostCreateCommand;
+use FluxQ\Console\Commands\VhostListCommand;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -49,10 +49,10 @@ final class AdminCommandTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL command integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL command integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -121,7 +121,7 @@ final class AdminCommandTest extends TestCase
             [$exitCode, $output] = $this->runArgumentCommand($command, $arguments);
 
             self::assertSame(1, $exitCode);
-            self::assertSame("Usage: flux vhost:create <name>\n", $output);
+            self::assertSame("Usage: fluxq vhost:create <name>\n", $output);
         }
 
         self::assertNotNull($this->virtualHosts->findByName('/'));
@@ -420,7 +420,7 @@ SQL)->execute(['message_route_id' => $earlyRoute->id]);
 
         if (!is_string($databaseName) || !str_contains($databaseName, 'test')) {
             self::fail(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 is_scalar($databaseName) ? (string) $databaseName : 'unknown'
             ));
         }

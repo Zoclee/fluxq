@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Broker\DeliveryState;
-use Flux\Broker\DestinationType;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\DestinationType;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use RuntimeException;
 use Throwable;
 

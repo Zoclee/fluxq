@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\Migrator;
 use PDO;
 use Throwable;
 
@@ -23,7 +23,7 @@ final readonly class DbStatusCommand
      */
     public function run(mixed $output): int
     {
-        $this->write($output, "Flux Database Status\n\n");
+        $this->write($output, "FluxQ Database Status\n\n");
 
         try {
             $connection = Connection::fromConfig($this->config);

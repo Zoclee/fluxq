@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Broker\ResourcePermissionMatcher;
-use Flux\Broker\User;
-use Flux\Broker\UserPermissions;
-use Flux\Broker\VirtualHost;
+use FluxQ\Broker\ResourcePermissionMatcher;
+use FluxQ\Broker\User;
+use FluxQ\Broker\UserPermissions;
+use FluxQ\Broker\VirtualHost;
 use PDO;
 use RuntimeException;
 

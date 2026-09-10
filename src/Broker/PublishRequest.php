@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Broker;
+namespace FluxQ\Broker;
 
-use Flux\Support\Uuid;
+use FluxQ\Support\Uuid;
 use InvalidArgumentException;
 
 final readonly class PublishRequest

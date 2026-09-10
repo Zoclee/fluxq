@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Runtime;
+namespace FluxQ\Tests\Unit\Runtime;
 
 use DateTimeImmutable;
-use Flux\Broker\ResourceLimits;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeConnection;
-use Flux\Runtime\RuntimeConsumer;
-use Flux\Runtime\RuntimeDiagnosticsServer;
-use Flux\Runtime\RuntimeState;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeConnection;
+use FluxQ\Runtime\RuntimeConsumer;
+use FluxQ\Runtime\RuntimeDiagnosticsServer;
+use FluxQ\Runtime\RuntimeState;
 use PHPUnit\Framework\TestCase;
 
 final class RuntimeDiagnosticsServerTest extends TestCase

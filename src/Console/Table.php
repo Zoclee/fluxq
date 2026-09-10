@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console;
+namespace FluxQ\Console;
 
 final class Table
 {

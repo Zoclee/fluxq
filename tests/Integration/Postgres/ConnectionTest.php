@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
-use Flux\Console\Commands\DbStatusCommand;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Console\Commands\DbStatusCommand;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\Migrator;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -26,10 +26,10 @@ final class ConnectionTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL connection integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL connection integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -172,7 +172,7 @@ SQL);
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Broker\VirtualHost;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Broker\VirtualHost;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use RuntimeException;
 use Throwable;
 

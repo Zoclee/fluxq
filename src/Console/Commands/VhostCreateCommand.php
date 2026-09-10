@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use PDOException;
 use Throwable;
 
@@ -25,7 +25,7 @@ final readonly class VhostCreateCommand
         $name = $arguments[0] ?? '';
 
         if (count($arguments) !== 1 || $name === '') {
-            $this->write($output, "Usage: flux vhost:create <name>\n");
+            $this->write($output, "Usage: fluxq vhost:create <name>\n");
 
             return 1;
         }

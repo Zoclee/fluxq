@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Protocol\Amqp;
+namespace FluxQ\Tests\Integration\Protocol\Amqp;
 
-use Flux\Broker\Broker;
-use Flux\Broker\Authorizer;
-use Flux\Broker\Authenticator;
-use Flux\Broker\DeliveryState;
-use Flux\Broker\ResourceLimits;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\RoutingSourceRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\UserRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Protocol\Amqp\AmqpConnection;
-use Flux\Protocol\Amqp\AmqpListener;
-use Flux\Protocol\Amqp\AmqpTlsConfig;
-use Flux\Protocol\Amqp\Frame;
-use Flux\Protocol\Amqp\FrameCodec;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Tests\Fixtures\TlsCertificate;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\Authorizer;
+use FluxQ\Broker\Authenticator;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\RoutingSourceRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Protocol\Amqp\AmqpConnection;
+use FluxQ\Protocol\Amqp\AmqpListener;
+use FluxQ\Protocol\Amqp\AmqpTlsConfig;
+use FluxQ\Protocol\Amqp\Frame;
+use FluxQ\Protocol\Amqp\FrameCodec;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Tests\Fixtures\TlsCertificate;
 use PDO;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
@@ -52,9 +52,9 @@ final class AmqpPublishConsumeTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for AMQP publish/consume integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run AMQP publish/consume integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run AMQP publish/consume integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -133,9 +133,9 @@ final class AmqpPublishConsumeTest extends TestCase
             'expiration' => ['expiration' => '60000'],
             'message_id' => ['message_id' => 'message-0027'],
             'timestamp' => ['timestamp' => 1777777777],
-            'type' => ['type' => 'flux.test.message'],
+            'type' => ['type' => 'fluxq.test.message'],
             'user_id' => ['user_id' => 'guest'],
-            'app_id' => ['app_id' => 'flux-pika-test'],
+            'app_id' => ['app_id' => 'fluxq-pika-test'],
             'cluster_id' => ['cluster_id' => 'cluster-a'],
         ];
 
@@ -3001,7 +3001,7 @@ final class AmqpPublishConsumeTest extends TestCase
         );
     }
 
-    public function testCancelAfterAckUsesFluxDeliveryIdWhenAmqpTagDiffers(): void
+    public function testCancelAfterAckUsesFluxQDeliveryIdWhenAmqpTagDiffers(): void
     {
         [$listener, $client] = $this->startedListener();
         $codec = new FrameCodec();
@@ -4232,9 +4232,9 @@ final class AmqpPublishConsumeTest extends TestCase
             'expiration' => '60000',
             'message_id' => 'message-0027',
             'timestamp' => $timestamp,
-            'type' => 'flux.test.message',
+            'type' => 'fluxq.test.message',
             'user_id' => 'guest',
-            'app_id' => 'flux-pika-test',
+            'app_id' => 'fluxq-pika-test',
         ];
     }
 
@@ -4243,7 +4243,7 @@ final class AmqpPublishConsumeTest extends TestCase
      */
     private function basicPropertiesFromHeader(Frame $frame): array
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader($frame->payload);
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader($frame->payload);
         $reader->readShort();
         $reader->readShort();
         $reader->readLongLong();
@@ -4358,7 +4358,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function deliveryTagFromDeliver(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readShortString();
 
         return $reader->readLongLong();
@@ -4366,42 +4366,42 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function consumerTagFromDeliver(Frame $frame): string
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readShortString();
     }
 
     private function consumerTagFromBasicCancelOk(Frame $frame): string
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readShortString();
     }
 
     private function consumerTagFromBasicCancel(Frame $frame): string
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readShortString();
     }
 
     private function deliveryTagFromBasicAck(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readLongLong();
     }
 
     private function deliveryTagFromBasicGetOk(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readLongLong();
     }
 
     private function redeliveredFromBasicGetOk(Frame $frame): bool
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readLongLong();
 
         return ($reader->readOctet() & 0b00000001) !== 0;
@@ -4409,7 +4409,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function queueDeclareMessageCount(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readShortString();
 
         return $reader->readLong();
@@ -4417,14 +4417,14 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function queueDeclareName(Frame $frame): string
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
 
         return $reader->readShortString();
     }
 
     private function queueDeclareConsumerCount(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readShortString();
         $reader->readLong();
 
@@ -4436,7 +4436,7 @@ final class AmqpPublishConsumeTest extends TestCase
      */
     private function basicReturnDetails(Frame $frame): array
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $replyCode = $reader->readShort();
         $reader->readShortString();
         $exchange = $reader->readShortString();
@@ -4451,7 +4451,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function basicReturnReplyText(Frame $frame): string
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readShort();
 
         return $reader->readShortString();
@@ -4459,7 +4459,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function multipleFromBasicAck(Frame $frame): bool
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader(substr($frame->payload, 4));
         $reader->readLongLong();
 
         return ($reader->readOctet() & 0b00000001) !== 0;
@@ -4467,7 +4467,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
     private function bodySizeFromHeader(Frame $frame): int
     {
-        $reader = new \Flux\Protocol\Amqp\AmqpMethodReader($frame->payload);
+        $reader = new \FluxQ\Protocol\Amqp\AmqpMethodReader($frame->payload);
         $reader->readShort();
         $reader->readShort();
 
@@ -4529,7 +4529,7 @@ final class AmqpPublishConsumeTest extends TestCase
         self::fail('Timed out waiting for AMQP frame.');
     }
 
-    private function singleDelivery(string $queue): \Flux\Broker\Delivery
+    private function singleDelivery(string $queue): \FluxQ\Broker\Delivery
     {
         $deliveries = $this->deliveriesForQueue($queue);
         self::assertCount(1, $deliveries);
@@ -4548,13 +4548,13 @@ final class AmqpPublishConsumeTest extends TestCase
     private function deliveryStates(string $queue): array
     {
         return array_map(
-            static fn (\Flux\Broker\Delivery $delivery): DeliveryState => $delivery->state,
+            static fn (\FluxQ\Broker\Delivery $delivery): DeliveryState => $delivery->state,
             $this->deliveriesForQueue($queue)
         );
     }
 
     /**
-     * @return list<\Flux\Broker\Delivery>
+     * @return list<\FluxQ\Broker\Delivery>
      */
     private function deliveriesForQueue(string $queue): array
     {
@@ -4571,7 +4571,7 @@ final class AmqpPublishConsumeTest extends TestCase
         return $this->messageForSingleDelivery($queue)->payload;
     }
 
-    private function messageForSingleDelivery(string $queue): \Flux\Broker\Message
+    private function messageForSingleDelivery(string $queue): \FluxQ\Broker\Message
     {
         $delivery = $this->singleDelivery($queue);
         $route = (new MessageRouteRepository($this->connection))->findById($delivery->messageRouteId);
@@ -4651,7 +4651,7 @@ final class AmqpPublishConsumeTest extends TestCase
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

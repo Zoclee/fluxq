@@ -1,6 +1,13 @@
 # Changelog
 
-All notable changes to Flux will be documented in this file.
+All notable changes to FluxQ will be documented in this file.
+
+## [0.2.0] - 10 Sep 2026
+
+### Changed
+
+- Renamed the project from Flux to FluxQ throughout documentation, code, CLI entry points, configuration paths, environment variables, database defaults, tests, and generated project graph metadata.
+- Updated the CLI version to `0.2.0`.
 
 ## [0.1.1] - 8 Sep 2026
 
@@ -25,17 +32,17 @@ All notable changes to Flux will be documented in this file.
 
 ### Fixed
 
-- Fixed the `flux` CLI bootstrap when Flux is installed as a Composer dependency.
+- Fixed the `fluxq` CLI bootstrap when FluxQ is installed as a Composer dependency.
 
 ## [0.1.0-RC1] - 24 Aug 2026
 
-First release candidate for the Flux MVP.
+First release candidate for the FluxQ MVP.
 
 ### Added
 
 - PostgreSQL-backed persistence foundation and migrations.
 - Protocol-neutral broker core for publish, reserve, acknowledge, reject, and release operations.
-- `flux` CLI for migrations, health/readiness checks, runtime diagnostics, and administrative inspection.
+- `fluxq` CLI for migrations, health/readiness checks, runtime diagnostics, and administrative inspection.
 - AMQP 0-9-1 adapter with queue, exchange, binding, publish, consume, get, ack/reject/nack, QoS, and basic publisher-confirm support.
 - AMQP listeners with plaintext and TLS support, username/password authentication, and per-vhost authorization.
 - Retry and dead-letter handling, resource limits, overload protection, and graceful bounded shutdown.

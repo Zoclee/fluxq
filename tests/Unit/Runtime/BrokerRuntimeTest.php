@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Runtime;
+namespace FluxQ\Tests\Unit\Runtime;
 
 use DateTimeImmutable;
-use Flux\Broker\Broker;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
-use Flux\Runtime\BrokerRuntime;
-use Flux\Runtime\ConnectionRegistry;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeConnection;
-use Flux\Runtime\RuntimeConsumer;
-use Flux\Runtime\RuntimeDiagnosticsServer;
-use Flux\Runtime\RuntimeDrainingComponent;
-use Flux\Runtime\RuntimeState;
+use FluxQ\Broker\Broker;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Runtime\BrokerRuntime;
+use FluxQ\Runtime\ConnectionRegistry;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeConnection;
+use FluxQ\Runtime\RuntimeConsumer;
+use FluxQ\Runtime\RuntimeDiagnosticsServer;
+use FluxQ\Runtime\RuntimeDrainingComponent;
+use FluxQ\Runtime\RuntimeState;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -246,7 +246,7 @@ final class BrokerRuntimeTest extends TestCase
 
     private function broker(): Broker
     {
-        $connection = new Connection(new ConnectionConfig('127.0.0.1', 5432, 'flux_test', 'flux', null));
+        $connection = new Connection(new ConnectionConfig('127.0.0.1', 5432, 'fluxq_test', 'fluxq', null));
 
         return new Broker(
             new VirtualHostRepository($connection),
@@ -258,7 +258,7 @@ final class BrokerRuntimeTest extends TestCase
     }
 }
 
-final class RecordingRuntimeComponent implements \Flux\Runtime\RuntimeComponent
+final class RecordingRuntimeComponent implements \FluxQ\Runtime\RuntimeComponent
 {
     /**
      * @var list<string>

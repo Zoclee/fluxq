@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Console;
+namespace FluxQ\Tests\Unit\Console;
 
-use Flux\Console\Application;
+use FluxQ\Console\Application;
 use PHPUnit\Framework\TestCase;
 
 final class ApplicationTest extends TestCase
 {
     public function testItPrintsHelpWhenNoCommandIsProvided(): void
     {
-        [$exitCode, $output] = $this->runApplication(['flux']);
+        [$exitCode, $output] = $this->runApplication(['fluxq']);
 
         self::assertSame(0, $exitCode);
-        self::assertStringContainsString('Flux ' . Application::VERSION, $output);
+        self::assertStringContainsString('FluxQ ' . Application::VERSION, $output);
         self::assertStringContainsString('Usage:', $output);
         self::assertStringContainsString('db:status', $output);
         self::assertStringContainsString('migrate', $output);
@@ -33,18 +33,18 @@ final class ApplicationTest extends TestCase
 
     public function testItPrintsTheVersion(): void
     {
-        [$exitCode, $output] = $this->runApplication(['flux', '--version']);
+        [$exitCode, $output] = $this->runApplication(['fluxq', '--version']);
 
         self::assertSame(0, $exitCode);
-        self::assertSame("Flux " . Application::VERSION . "\n", $output);
+        self::assertSame("FluxQ " . Application::VERSION . "\n", $output);
     }
 
     public function testRootCliEntryPointExists(): void
     {
         $projectRoot = dirname(__DIR__, 3);
 
-        self::assertFileExists($projectRoot . '/flux');
-        self::assertFileDoesNotExist($projectRoot . '/bin' . DIRECTORY_SEPARATOR . 'flux');
+        self::assertFileExists($projectRoot . '/fluxq');
+        self::assertFileDoesNotExist($projectRoot . '/bin' . DIRECTORY_SEPARATOR . 'fluxq');
     }
 
     public function testRootCliEntryPointUsesRepositoryAutoloaderFirst(): void
@@ -57,7 +57,7 @@ final class ApplicationTest extends TestCase
         mkdir($layout . '/parent', 0777, true);
         file_put_contents($layout . '/parent/autoload.php', $this->fakeAutoloader('parent', 19));
 
-        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/flux');
+        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/fluxq');
 
         self::assertSame(17, $exitCode);
         self::assertSame("repository\n", $stdout);
@@ -66,11 +66,11 @@ final class ApplicationTest extends TestCase
 
     public function testRootCliEntryPointFallsBackToComposerDependencyAutoloader(): void
     {
-        $layout = $this->createCliBootstrapLayout('vendor/zoclee/flux');
+        $layout = $this->createCliBootstrapLayout('vendor/zoclee/fluxq');
 
         file_put_contents(dirname($layout, 2) . '/autoload.php', $this->fakeAutoloader('composer', 23));
 
-        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/flux');
+        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/fluxq');
 
         self::assertSame(23, $exitCode);
         self::assertSame("composer\n", $stdout);
@@ -81,11 +81,11 @@ final class ApplicationTest extends TestCase
     {
         $layout = $this->createCliBootstrapLayout();
 
-        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/flux');
+        [$exitCode, $stdout, $stderr] = $this->runCliBootstrap($layout . '/fluxq');
 
         self::assertSame(1, $exitCode);
         self::assertSame('', $stdout);
-        self::assertStringContainsString("Flux could not find Composer's autoloader.", $stderr);
+        self::assertStringContainsString("FluxQ could not find Composer's autoloader.", $stderr);
     }
 
     /**
@@ -111,11 +111,11 @@ final class ApplicationTest extends TestCase
 
     private function createCliBootstrapLayout(string $relativePath = ''): string
     {
-        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'flux-cli-bootstrap-' . bin2hex(random_bytes(8));
+        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'fluxq-cli-bootstrap-' . bin2hex(random_bytes(8));
         $layout = $relativePath === '' ? $root : $root . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relativePath);
 
         mkdir($layout, 0777, true);
-        copy(dirname(__DIR__, 3) . '/flux', $layout . '/flux');
+        copy(dirname(__DIR__, 3) . '/fluxq', $layout . '/fluxq');
 
         return $layout;
     }
@@ -157,7 +157,7 @@ final class ApplicationTest extends TestCase
 
 declare(strict_types=1);
 
-namespace Flux\Console;
+namespace FluxQ\Console;
 
 final class Application
 {

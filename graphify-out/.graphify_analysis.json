@@ -86,7 +86,7 @@
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testbasicgetnoacksettlesdeliveryimmediately",
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testbasicgetreturnsavailablemessagewithbinarybodyandmanualack",
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testbasicqosreturnsqosok",
-      "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testcancelafterackusesfluxdeliveryidwhenamqptagdiffers",
+      "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testcancelafterackusesfluxqdeliveryidwhenamqptagdiffers",
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testchannelcloseclearsconfirmstateandsequencetracking",
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testcleanupisidempotentafterdisconnect",
       "tests_integration_protocol_amqp_amqppublishconsumetest_amqppublishconsumetest_testconfirmselectnowaitdoesnotsendselectokbutpublishesareconfirmed",
@@ -164,10 +164,10 @@
     ],
     "1": [
       "amqpconnectionstate",
-      "flux_broker_authenticationservice",
-      "flux_broker_authorizationpermission",
-      "flux_broker_authorizationservice",
-      "flux_runtime_runtimecomponent",
+      "fluxq_broker_authenticationservice",
+      "fluxq_broker_authorizationpermission",
+      "fluxq_broker_authorizationservice",
+      "fluxq_runtime_runtimecomponent",
       "src_broker_topologyexception",
       "src_broker_topologyexception_topologyexception",
       "src_broker_topologyexception_topologyexception_construct",
@@ -467,7 +467,7 @@
       "tests_integration_protocol_amqp_amqplistenertest_amqplistenertest_tuneok"
     ],
     "5": [
-      "flux_runtime_runtimediagnostics",
+      "fluxq_runtime_runtimediagnostics",
       "runtimeexception",
       "src_broker_destinationnotfoundexception",
       "src_broker_destinationnotfoundexception_destinationnotfoundexception",
@@ -575,7 +575,7 @@
       "tests_integration_postgres_bindingrepositorytest_bindingrepositorytest_testunknownvirtualhostfails"
     ],
     "7": [
-      "flux_broker_routingsourcetype",
+      "fluxq_broker_routingsourcetype",
       "pdo",
       "phpunit_framework_testcase",
       "src_broker_binding",
@@ -619,8 +619,8 @@
       "tests_unit_persistence_postgres_migrationfilenametest"
     ],
     "8": [
-      "flux",
-      "flux_broker_deliverystate",
+      "fluxq",
+      "fluxq_broker_deliverystate",
       "src_broker_authorizationpermission",
       "src_broker_destinationtype",
       "src_broker_retrypolicy",
@@ -913,7 +913,7 @@
     ],
     "17": [
       "datetimeimmutable",
-      "flux_runtime_runtimestate",
+      "fluxq_runtime_runtimestate",
       "src_broker_broker",
       "src_broker_releaserequest",
       "src_broker_releaserequest_releaserequest",
@@ -953,8 +953,8 @@
       "composer_license",
       "composer_minimum_stability",
       "composer_name",
-      "composer_psr_4_flux",
-      "composer_psr_4_flux_tests",
+      "composer_psr_4_fluxq",
+      "composer_psr_4_fluxq_tests",
       "composer_require",
       "composer_require_dev",
       "composer_require_dev_phpunit_phpunit",
@@ -965,7 +965,7 @@
       "composer_scripts",
       "composer_scripts_test",
       "composer_type",
-      "ref_flux"
+      "ref_fluxq"
     ],
     "19": [
       "tests_integration_broker_brokerdeliverytest_brokerdeliverytest",
@@ -995,7 +995,7 @@
       "tests_integration_broker_brokerdeliverytest_brokerdeliverytest_testunknownvirtualhostdestinationandsubscriptionfailcleanly"
     ],
     "20": [
-      "flux_broker_destinationtype",
+      "fluxq_broker_destinationtype",
       "src_broker_destination",
       "src_broker_destination_destination",
       "src_broker_destination_destination_construct",
@@ -1021,7 +1021,7 @@
       "src_persistence_postgres_destinationrepository_php_destinationtype"
     ],
     "21": [
-      "flux_runtime_runtimedrainingcomponent",
+      "fluxq_runtime_runtimedrainingcomponent",
       "tests_unit_runtime_brokerruntimetest_brokerruntimetest",
       "tests_unit_runtime_brokerruntimetest_brokerruntimetest_broker",
       "tests_unit_runtime_brokerruntimetest_brokerruntimetest_runtime",
@@ -1092,7 +1092,7 @@
       "database_migrations_20260820_120012_create_user_permissions_user_permissions"
     ],
     "24": [
-      "flux_protocol_amqp_amqpconnectionstate",
+      "fluxq_protocol_amqp_amqpconnectionstate",
       "src_broker_authenticateduser",
       "src_broker_authenticateduser_authenticateduser",
       "src_broker_authenticateduser_authenticateduser_construct",
@@ -1795,7 +1795,7 @@
       "database_migrations_20260820_120000_create_schema_migrations_schema_migrations"
     ],
     "86": [
-      "config_flux"
+      "config_fluxq"
     ],
     "87": [
       "database_migrations_20260820_120008_enforce_binding_destination_virtual_host"

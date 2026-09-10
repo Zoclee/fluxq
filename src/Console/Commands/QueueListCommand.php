@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Broker\DestinationType;
-use Flux\Console\Table;
-use Flux\Persistence\Postgres\DestinationRepository;
+use FluxQ\Broker\DestinationType;
+use FluxQ\Console\Table;
+use FluxQ\Persistence\Postgres\DestinationRepository;
 use Throwable;
 
 final readonly class QueueListCommand

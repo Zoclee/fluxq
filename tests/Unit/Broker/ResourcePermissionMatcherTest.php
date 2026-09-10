@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Broker;
+namespace FluxQ\Tests\Unit\Broker;
 
-use Flux\Broker\ResourcePermissionMatcher;
+use FluxQ\Broker\ResourcePermissionMatcher;
 use PHPUnit\Framework\TestCase;
 
 final class ResourcePermissionMatcherTest extends TestCase

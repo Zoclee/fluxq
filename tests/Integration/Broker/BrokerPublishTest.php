@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Broker;
+namespace FluxQ\Tests\Integration\Broker;
 
-use Flux\Broker\Broker;
-use Flux\Broker\DeliveryState;
-use Flux\Broker\Destination;
-use Flux\Broker\PublishRequest;
-use Flux\Broker\VirtualHostNotFoundException;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Persistence\Postgres\PublishTransaction;
-use Flux\Persistence\Postgres\SubscriptionRepository;
-use Flux\Persistence\Postgres\VirtualHostRepository;
+use FluxQ\Broker\Broker;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\Destination;
+use FluxQ\Broker\PublishRequest;
+use FluxQ\Broker\VirtualHostNotFoundException;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\PublishTransaction;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Persistence\Postgres\VirtualHostRepository;
 use PDO;
 use PDOException;
 use PHPUnit\Framework\Attributes\Before;
@@ -44,10 +44,10 @@ final class BrokerPublishTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL broker integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL broker integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -278,7 +278,7 @@ final class BrokerPublishTest extends TestCase
     private function installDeliveryFailureTrigger(): void
     {
         $this->pdo->exec(<<<'SQL'
-CREATE OR REPLACE FUNCTION flux_test_fail_delivery_insert()
+CREATE OR REPLACE FUNCTION fluxq_test_fail_delivery_insert()
 RETURNS trigger
 LANGUAGE plpgsql
 AS $$
@@ -287,10 +287,10 @@ BEGIN
 END;
 $$;
 
-CREATE TRIGGER flux_test_fail_delivery_insert
+CREATE TRIGGER fluxq_test_fail_delivery_insert
 BEFORE INSERT ON deliveries
 FOR EACH ROW
-EXECUTE FUNCTION flux_test_fail_delivery_insert();
+EXECUTE FUNCTION fluxq_test_fail_delivery_insert();
 SQL);
     }
 
@@ -306,7 +306,7 @@ SQL);
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Persistence\Postgres;
+namespace FluxQ\Tests\Unit\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\Migrator;
 use PHPUnit\Framework\TestCase;
 
 final class MigrationFilenameTest extends TestCase

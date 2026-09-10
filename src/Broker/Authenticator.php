@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Broker;
+namespace FluxQ\Broker;
 
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\UserRepository;
 
 final readonly class Authenticator implements AuthenticationService
 {

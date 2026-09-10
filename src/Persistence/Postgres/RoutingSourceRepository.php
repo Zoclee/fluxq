@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Broker\RoutingSource;
-use Flux\Broker\RoutingSourceType;
+use FluxQ\Broker\RoutingSource;
+use FluxQ\Broker\RoutingSourceType;
 use InvalidArgumentException;
 use JsonException;
 use PDO;

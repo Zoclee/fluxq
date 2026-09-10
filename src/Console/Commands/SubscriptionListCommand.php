@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Console\Table;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Console\Table;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
 use Throwable;
 
 final readonly class SubscriptionListCommand

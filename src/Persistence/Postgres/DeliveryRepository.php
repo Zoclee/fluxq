@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Broker\Delivery;
-use Flux\Broker\DeliveryState;
-use Flux\Broker\RetryPolicy;
+use FluxQ\Broker\Delivery;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\RetryPolicy;
 use PDO;
 use RuntimeException;
 

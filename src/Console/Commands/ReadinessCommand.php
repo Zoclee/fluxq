@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\ConnectionConfig;
-use Flux\Persistence\Postgres\Migrator;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\ConnectionConfig;
+use FluxQ\Persistence\Postgres\Migrator;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use RuntimeException;
 use Throwable;
 
@@ -27,7 +27,7 @@ final readonly class ReadinessCommand
      */
     public function run(mixed $output): int
     {
-        $this->write($output, "Flux Readiness\n\n");
+        $this->write($output, "FluxQ Readiness\n\n");
 
         try {
             $stats = $this->diagnostics->stats();

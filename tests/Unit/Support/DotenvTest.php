@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Support;
+namespace FluxQ\Tests\Unit\Support;
 
-use Flux\Support\Dotenv;
+use FluxQ\Support\Dotenv;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 final class DotenvTest extends TestCase
 {
     private const VARIABLES = [
-        'FLUX_DOTENV_TEST_HOST',
-        'FLUX_DOTENV_TEST_PASSWORD',
-        'FLUX_DOTENV_TEST_QUOTED',
-        'FLUX_DOTENV_TEST_EXISTING',
-        'FLUX_DOTENV_TEST_EMPTY',
+        'FLUXQ_DOTENV_TEST_HOST',
+        'FLUXQ_DOTENV_TEST_PASSWORD',
+        'FLUXQ_DOTENV_TEST_QUOTED',
+        'FLUXQ_DOTENV_TEST_EXISTING',
+        'FLUXQ_DOTENV_TEST_EMPTY',
     ];
 
     protected function setUp(): void
@@ -36,39 +36,39 @@ final class DotenvTest extends TestCase
     {
         $path = $this->writeDotenv(<<<'ENV'
 # Comment
-FLUX_DOTENV_TEST_HOST=127.0.0.1
-FLUX_DOTENV_TEST_PASSWORD="secret value"
-export FLUX_DOTENV_TEST_QUOTED='quoted # value'
-FLUX_DOTENV_TEST_EMPTY=
+FLUXQ_DOTENV_TEST_HOST=127.0.0.1
+FLUXQ_DOTENV_TEST_PASSWORD="secret value"
+export FLUXQ_DOTENV_TEST_QUOTED='quoted # value'
+FLUXQ_DOTENV_TEST_EMPTY=
 ENV);
 
         Dotenv::load($path);
 
-        self::assertSame('127.0.0.1', getenv('FLUX_DOTENV_TEST_HOST'));
-        self::assertSame('secret value', getenv('FLUX_DOTENV_TEST_PASSWORD'));
-        self::assertSame('quoted # value', getenv('FLUX_DOTENV_TEST_QUOTED'));
-        self::assertSame('', getenv('FLUX_DOTENV_TEST_EMPTY'));
+        self::assertSame('127.0.0.1', getenv('FLUXQ_DOTENV_TEST_HOST'));
+        self::assertSame('secret value', getenv('FLUXQ_DOTENV_TEST_PASSWORD'));
+        self::assertSame('quoted # value', getenv('FLUXQ_DOTENV_TEST_QUOTED'));
+        self::assertSame('', getenv('FLUXQ_DOTENV_TEST_EMPTY'));
     }
 
     public function testProcessEnvironmentTakesPrecedence(): void
     {
-        putenv('FLUX_DOTENV_TEST_EXISTING=from-process');
+        putenv('FLUXQ_DOTENV_TEST_EXISTING=from-process');
 
-        Dotenv::load($this->writeDotenv('FLUX_DOTENV_TEST_EXISTING=from-file'));
+        Dotenv::load($this->writeDotenv('FLUXQ_DOTENV_TEST_EXISTING=from-file'));
 
-        self::assertSame('from-process', getenv('FLUX_DOTENV_TEST_EXISTING'));
+        self::assertSame('from-process', getenv('FLUXQ_DOTENV_TEST_EXISTING'));
     }
 
     public function testMissingDotenvFileIsIgnored(): void
     {
-        Dotenv::load(sys_get_temp_dir() . '/flux_missing_' . bin2hex(random_bytes(8)) . '.env');
+        Dotenv::load(sys_get_temp_dir() . '/fluxq_missing_' . bin2hex(random_bytes(8)) . '.env');
 
-        self::assertFalse(getenv('FLUX_DOTENV_TEST_HOST'));
+        self::assertFalse(getenv('FLUXQ_DOTENV_TEST_HOST'));
     }
 
     private function writeDotenv(string $contents): string
     {
-        $path = tempnam(sys_get_temp_dir(), 'flux_env_');
+        $path = tempnam(sys_get_temp_dir(), 'fluxq_env_');
 
         if ($path === false || file_put_contents($path, $contents) === false) {
             throw new RuntimeException('Could not create temporary .env file.');

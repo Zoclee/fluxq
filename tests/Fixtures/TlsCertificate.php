@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Fixtures;
+namespace FluxQ\Tests\Fixtures;
 
 use RuntimeException;
 
@@ -13,7 +13,7 @@ final readonly class TlsCertificate
      */
     public static function create(): array
     {
-        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'flux_tls_' . bin2hex(random_bytes(8));
+        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'fluxq_tls_' . bin2hex(random_bytes(8));
         if (!mkdir($directory) && !is_dir($directory)) {
             throw new RuntimeException(sprintf('Could not create TLS fixture directory "%s".', $directory));
         }

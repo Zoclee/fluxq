@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
-use Flux\Broker\Binding;
-use Flux\Broker\PublishResult;
-use Flux\Broker\ResourceLimitException;
-use Flux\Broker\ResourceLimits;
-use Flux\Broker\RoutingSourceType;
-use Flux\Broker\TopicMatcher;
+use FluxQ\Broker\Binding;
+use FluxQ\Broker\PublishResult;
+use FluxQ\Broker\ResourceLimitException;
+use FluxQ\Broker\ResourceLimits;
+use FluxQ\Broker\RoutingSourceType;
+use FluxQ\Broker\TopicMatcher;
 use PDO;
 
 final readonly class PublishTransaction

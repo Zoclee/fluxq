@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Support;
+namespace FluxQ\Support;
 
 use InvalidArgumentException;
 

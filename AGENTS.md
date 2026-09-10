@@ -1,18 +1,18 @@
 # AGENTS.md
 
-This file gives persistent guidance to AI coding agents working on Flux.
+This file gives persistent guidance to AI coding agents working on FluxQ.
 
 ## Project Context
 
-Flux is a unified, high-performance message broker being developed from scratch in vanilla PHP with PostgreSQL.
+FluxQ is a unified, high-performance message broker being developed from scratch in vanilla PHP with PostgreSQL.
 
-Flux is currently in early development and pre-MVP. Protocol compatibility, broker behavior, database schema, migrations, persistence behavior, and network adapters are not implemented yet.
+FluxQ is currently in early development and pre-MVP. Protocol compatibility, broker behavior, database schema, migrations, persistence behavior, and network adapters are not implemented yet.
 
 The current roadmap is:
 
 ```text
-Phase 1 - PostgreSQL schema, persistence foundation and flux CLI
-Phase 2 - Protocol-neutral Flux broker core
+Phase 1 - PostgreSQL schema, persistence foundation and fluxq CLI
+Phase 2 - Protocol-neutral FluxQ broker core
 Phase 3 - Minimal AMQP 0-9-1 adapter and functional MVP
 Phase 4 - Reliability, observability and production-shaped architecture
 ```
@@ -21,9 +21,9 @@ Respect the current phase. Do not implement future-phase functionality unless ex
 
 ## Core Philosophy
 
-Flux should remain lightweight, fast, explicit, understandable, dependency-conscious, framework-free, and progressively scalable.
+FluxQ should remain lightweight, fast, explicit, understandable, dependency-conscious, framework-free, and progressively scalable.
 
-Prefer simple, direct PHP implementations over unnecessary abstractions. Do not introduce architecture merely because it is common in large PHP frameworks. Every abstraction must solve a concrete problem in Flux.
+Prefer simple, direct PHP implementations over unnecessary abstractions. Do not introduce architecture merely because it is common in large PHP frameworks. Every abstraction must solve a concrete problem in FluxQ.
 
 ## PHP
 
@@ -34,19 +34,19 @@ Use `declare(strict_types=1);` for PHP source files where appropriate.
 Follow the configured PSR-4 autoloading:
 
 ```text
-Flux\       -> src/
-Flux\Tests\ -> tests/
+FluxQ\       -> src/
+FluxQ\Tests\ -> tests/
 ```
 
 Prefer explicit types, return types, readonly properties where appropriate, enums where genuinely useful, and clear immutable value objects where they improve correctness. Avoid unnecessary magic behavior.
 
 ## Dependencies
 
-Flux is intentionally vanilla PHP.
+FluxQ is intentionally vanilla PHP.
 
 Do not introduce Laravel, Symfony, or another application framework.
 
-Third-party dependencies should be added only when they provide substantial value that would be unreasonable or risky to implement in Flux directly.
+Third-party dependencies should be added only when they provide substantial value that would be unreasonable or risky to implement in FluxQ directly.
 
 Do not add:
 
@@ -76,7 +76,7 @@ src/
 
 ### Broker
 
-Contains the protocol-neutral Flux broker core.
+Contains the protocol-neutral FluxQ broker core.
 
 The broker must not depend on AMQP, MQTT, Kafka, or other wire protocols.
 
@@ -86,9 +86,9 @@ Runtime connections and runtime consumers are process-memory state only. Do not 
 
 ### Console
 
-Contains the `flux` CLI implementation and commands.
+Contains the `fluxq` CLI implementation and commands.
 
-The CLI should invoke the same underlying Flux services as the broker/server. Do not implement duplicate business logic specifically for CLI commands.
+The CLI should invoke the same underlying FluxQ services as the broker/server. Do not implement duplicate business logic specifically for CLI commands.
 
 ### Persistence
 
@@ -102,19 +102,19 @@ Do not create speculative persistence abstractions merely to support hypothetica
 
 Contains protocol adapters.
 
-Protocol adapters translate between external protocols and Flux's internal broker model.
+Protocol adapters translate between external protocols and FluxQ's internal broker model.
 
 The intended dependency direction is:
 
 ```text
 AMQP ---\
-MQTT ----> Flux Broker Core -> Persistence -> PostgreSQL
+MQTT ----> FluxQ Broker Core -> Persistence -> PostgreSQL
 Kafka --/
 ```
 
-Protocol adapters must not become the broker core. AMQP concepts must not define Flux's internal architecture merely because AMQP is the first implemented protocol.
+Protocol adapters must not become the broker core. AMQP concepts must not define FluxQ's internal architecture merely because AMQP is the first implemented protocol.
 
-Protocol adapters should communicate through Flux's internal broker operations rather than directly implementing storage behavior.
+Protocol adapters should communicate through FluxQ's internal broker operations rather than directly implementing storage behavior.
 
 ### Support
 
@@ -122,15 +122,15 @@ Contains only genuinely shared infrastructure. Do not turn `Support` into a dump
 
 ## Unified Broker Principle
 
-Flux is not intended to become an AMQP broker with MQTT and Kafka bolted onto it.
+FluxQ is not intended to become an AMQP broker with MQTT and Kafka bolted onto it.
 
-Flux should have its own protocol-neutral internal broker model. Future cross-protocol flows should remain architecturally possible, such as:
+FluxQ should have its own protocol-neutral internal broker model. Future cross-protocol flows should remain architecturally possible, such as:
 
 ```text
-MQTT Producer -> MQTT Adapter -> Flux -> AMQP Adapter -> AMQP Consumer
-AMQP -> Flux -> Kafka
-MQTT -> Flux -> AMQP
-HTTP -> Flux -> MQTT
+MQTT Producer -> MQTT Adapter -> FluxQ -> AMQP Adapter -> AMQP Consumer
+AMQP -> FluxQ -> Kafka
+MQTT -> FluxQ -> AMQP
+HTTP -> FluxQ -> MQTT
 ```
 
 Do not assume that concepts from different protocols map one-to-one.
@@ -139,7 +139,7 @@ When implementing protocol support, preserve protocol-specific semantics at the 
 
 ## PostgreSQL
 
-PostgreSQL is a foundational component of the initial Flux architecture.
+PostgreSQL is a foundational component of the initial FluxQ architecture.
 
 Use PDO, prepared statements, transactions, and PostgreSQL capabilities where they provide meaningful advantages.
 
@@ -157,27 +157,27 @@ Do not make schema changes casually. Database changes should be implemented thro
 
 ## CLI
 
-The Flux administration CLI is:
+The FluxQ administration CLI is:
 
 ```bash
-php flux <command>
+php fluxq <command>
 ```
 
 The executable entry point is:
 
 ```text
-flux
+fluxq
 ```
 
 Keep this project-root entry point extremely small. Actual CLI implementation belongs under `src/Console/`. Commands belong under `src/Console/Commands/`.
 
-The CLI is expected to become a major operational and diagnostic interface for Flux. It should eventually support inspecting queues, messages, consumers, connections, broker status, health, statistics, and troubleshooting information.
+The CLI is expected to become a major operational and diagnostic interface for FluxQ. It should eventually support inspecting queues, messages, consumers, connections, broker status, health, statistics, and troubleshooting information.
 
 CLI commands must favor safe operational behavior. Destructive operations such as purging or deleting data should require deliberate invocation and appropriate safeguards.
 
 ## Testing
 
-Testing is a first-class part of Flux development.
+Testing is a first-class part of FluxQ development.
 
 Tests are divided into:
 
@@ -211,7 +211,7 @@ composer test
 
 ## Performance
 
-Flux is infrastructure software and performance matters. Correctness comes before premature optimization.
+FluxQ is infrastructure software and performance matters. Correctness comes before premature optimization.
 
 Avoid obviously inefficient designs, especially:
 
@@ -264,7 +264,7 @@ Do not commit secrets or environment-specific credentials.
 
 ## Scope Discipline
 
-Flux will be implemented progressively.
+FluxQ will be implemented progressively.
 
 Do not add speculative classes, interfaces, tables, protocols, or abstractions merely because they may eventually be useful.
 

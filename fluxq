@@ -3,7 +3,7 @@
 
 declare(strict_types=1);
 
-use Flux\Console\Application;
+use FluxQ\Console\Application;
 
 $autoloaders = [
     __DIR__ . '/vendor/autoload.php',
@@ -21,7 +21,7 @@ foreach ($autoloaders as $autoload) {
 }
 
 if (! $autoloaded) {
-    fwrite(STDERR, "Flux could not find Composer's autoloader. Run composer install or install Flux through Composer.\n");
+    fwrite(STDERR, "FluxQ could not find Composer's autoloader. Run composer install or install FluxQ through Composer.\n");
     exit(1);
 }
 

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Protocol\Amqp;
+namespace FluxQ\Tests\Unit\Protocol\Amqp;
 
-use Flux\Broker\AuthenticatedUser;
-use Flux\Broker\AuthenticationResult;
-use Flux\Broker\AuthenticationService;
-use Flux\Protocol\Amqp\AmqpConnection;
-use Flux\Protocol\Amqp\AmqpConnectionState;
-use Flux\Protocol\Amqp\Frame;
-use Flux\Protocol\Amqp\FrameCodec;
-use Flux\Protocol\Amqp\AmqpMethodReader;
-use Flux\Protocol\Amqp\ProtocolException;
-use Flux\Runtime\ConnectionRegistry;
+use FluxQ\Broker\AuthenticatedUser;
+use FluxQ\Broker\AuthenticationResult;
+use FluxQ\Broker\AuthenticationService;
+use FluxQ\Protocol\Amqp\AmqpConnection;
+use FluxQ\Protocol\Amqp\AmqpConnectionState;
+use FluxQ\Protocol\Amqp\Frame;
+use FluxQ\Protocol\Amqp\FrameCodec;
+use FluxQ\Protocol\Amqp\AmqpMethodReader;
+use FluxQ\Protocol\Amqp\ProtocolException;
+use FluxQ\Runtime\ConnectionRegistry;
 use PHPUnit\Framework\TestCase;
 
 final class AmqpConnectionTest extends TestCase

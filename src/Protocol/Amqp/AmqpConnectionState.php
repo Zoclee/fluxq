@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Protocol\Amqp;
+namespace FluxQ\Protocol\Amqp;
 
 enum AmqpConnectionState: string
 {

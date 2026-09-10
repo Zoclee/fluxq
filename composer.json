@@ -1,10 +1,10 @@
 {
-    "name": "zoclee/flux",
-    "description": "Flux is a unified message broker built for reliability, extensibility, and interoperability, with a pure PHP core and PostgreSQL persistence.",
+    "name": "zoclee/fluxq",
+    "description": "FluxQ is a unified message broker built for reliability, extensibility, and interoperability, with a pure PHP core and PostgreSQL persistence.",
     "type": "project",
     "license": "MIT",
     "bin": [
-        "flux"
+        "fluxq"
     ],
     "require": {
         "ext-openssl": "*",
@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Flux\\": "src/"
+            "FluxQ\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Flux\\Tests\\": "tests/"
+            "FluxQ\\Tests\\": "tests/"
         }
     },
     "scripts": {

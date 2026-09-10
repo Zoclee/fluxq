@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Console\Table;
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Console\Table;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use RuntimeException;
 
 final readonly class ConsumerListCommand

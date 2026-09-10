@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Runtime;
+namespace FluxQ\Runtime;
 
-use Flux\Broker\ResourceLimits;
+use FluxQ\Broker\ResourceLimits;
 use JsonException;
 use RuntimeException;
 

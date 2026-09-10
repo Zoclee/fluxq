@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flux\Runtime;
+namespace FluxQ\Runtime;
 
 final class ConnectionRegistry
 {

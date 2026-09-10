@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Runtime;
+namespace FluxQ\Tests\Unit\Runtime;
 
 use DateTimeImmutable;
-use Flux\Runtime\ConsumerRegistry;
-use Flux\Runtime\RuntimeConsumer;
-use Flux\Runtime\RuntimeRegistrationException;
+use FluxQ\Runtime\ConsumerRegistry;
+use FluxQ\Runtime\RuntimeConsumer;
+use FluxQ\Runtime\RuntimeRegistrationException;
 use PHPUnit\Framework\TestCase;
 
 final class ConsumerRegistryTest extends TestCase

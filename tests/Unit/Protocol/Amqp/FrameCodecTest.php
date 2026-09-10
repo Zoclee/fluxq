@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Protocol\Amqp;
+namespace FluxQ\Tests\Unit\Protocol\Amqp;
 
-use Flux\Protocol\Amqp\Frame;
-use Flux\Protocol\Amqp\FrameCodec;
-use Flux\Protocol\Amqp\ProtocolException;
+use FluxQ\Protocol\Amqp\Frame;
+use FluxQ\Protocol\Amqp\FrameCodec;
+use FluxQ\Protocol\Amqp\ProtocolException;
 use PHPUnit\Framework\TestCase;
 
 final class FrameCodecTest extends TestCase

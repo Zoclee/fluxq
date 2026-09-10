@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Broker\DestinationType;
-use Flux\Broker\DeliveryState;
-use Flux\Broker\RetryPolicy;
-use Flux\Persistence\Postgres\BindingRepository;
-use Flux\Persistence\Postgres\DeliveryRepository;
-use Flux\Persistence\Postgres\DestinationRepository;
-use Flux\Persistence\Postgres\MessageRouteRepository;
-use Flux\Persistence\Postgres\SubscriptionRepository;
+use FluxQ\Broker\DestinationType;
+use FluxQ\Broker\DeliveryState;
+use FluxQ\Broker\RetryPolicy;
+use FluxQ\Persistence\Postgres\BindingRepository;
+use FluxQ\Persistence\Postgres\DeliveryRepository;
+use FluxQ\Persistence\Postgres\DestinationRepository;
+use FluxQ\Persistence\Postgres\MessageRouteRepository;
+use FluxQ\Persistence\Postgres\SubscriptionRepository;
 use Throwable;
 
 final readonly class QueueShowCommand

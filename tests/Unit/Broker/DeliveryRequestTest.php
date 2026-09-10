@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Broker;
+namespace FluxQ\Tests\Unit\Broker;
 
-use Flux\Broker\AcknowledgeRequest;
-use Flux\Broker\RejectRequest;
-use Flux\Broker\ReleaseRequest;
-use Flux\Broker\ReserveRequest;
+use FluxQ\Broker\AcknowledgeRequest;
+use FluxQ\Broker\RejectRequest;
+use FluxQ\Broker\ReleaseRequest;
+use FluxQ\Broker\ReserveRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

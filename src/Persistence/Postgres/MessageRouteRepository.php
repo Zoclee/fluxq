@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Persistence\Postgres;
+namespace FluxQ\Persistence\Postgres;
 
 use DateTimeImmutable;
-use Flux\Broker\MessageRoute;
+use FluxQ\Broker\MessageRoute;
 use PDO;
 use RuntimeException;
 

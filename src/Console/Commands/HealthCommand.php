@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Runtime\RuntimeDiagnostics;
+use FluxQ\Runtime\RuntimeDiagnostics;
 use RuntimeException;
 
 final readonly class HealthCommand
@@ -19,7 +19,7 @@ final readonly class HealthCommand
      */
     public function run(mixed $output): int
     {
-        $this->write($output, "Flux Health\n\n");
+        $this->write($output, "FluxQ Health\n\n");
 
         try {
             $stats = $this->diagnostics->stats();

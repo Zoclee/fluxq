@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
 use Closure;
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\UserRepository;
 use Throwable;
 
 final readonly class UserCreateCommand
@@ -31,7 +31,7 @@ final readonly class UserCreateCommand
     {
         $username = $arguments[0] ?? '';
         if ($username === '') {
-            $this->write($output, "Usage: flux user:create <username>\n");
+            $this->write($output, "Usage: fluxq user:create <username>\n");
 
             return 1;
         }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Runtime;
+namespace FluxQ\Tests\Unit\Runtime;
 
-use Flux\Runtime\RuntimeConnection;
-use Flux\Runtime\RuntimeConsumer;
+use FluxQ\Runtime\RuntimeConnection;
+use FluxQ\Runtime\RuntimeConsumer;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

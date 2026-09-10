@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Flux\Console\Commands;
+namespace FluxQ\Console\Commands;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\UserRepository;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\UserRepository;
 use Throwable;
 
 final readonly class UserGrantVhostCommand
@@ -25,7 +25,7 @@ final readonly class UserGrantVhostCommand
         $virtualHost = $arguments[1] ?? '';
 
         if ($username === '' || $virtualHost === '') {
-            $this->write($output, "Usage: flux user:grant-vhost <username> <vhost>\n");
+            $this->write($output, "Usage: fluxq user:grant-vhost <username> <vhost>\n");
 
             return 1;
         }

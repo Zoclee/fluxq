@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Unit\Support;
+namespace FluxQ\Tests\Unit\Support;
 
-use Flux\Support\Uuid;
+use FluxQ\Support\Uuid;
 use PHPUnit\Framework\TestCase;
 
 final class UuidTest extends TestCase

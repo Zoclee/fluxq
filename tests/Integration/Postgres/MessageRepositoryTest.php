@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Flux\Tests\Integration\Postgres;
+namespace FluxQ\Tests\Integration\Postgres;
 
-use Flux\Persistence\Postgres\Connection;
-use Flux\Persistence\Postgres\MessageRepository;
-use Flux\Persistence\Postgres\Migrator;
+use FluxQ\Persistence\Postgres\Connection;
+use FluxQ\Persistence\Postgres\MessageRepository;
+use FluxQ\Persistence\Postgres\Migrator;
 use InvalidArgumentException;
 use PDO;
 use PDOException;
@@ -26,10 +26,10 @@ final class MessageRepositoryTest extends TestCase
             self::markTestSkipped('The pdo_pgsql extension is required for PostgreSQL integration tests.');
         }
 
-        $dsn = getenv('FLUX_TEST_DATABASE_URL');
+        $dsn = getenv('FLUXQ_TEST_DATABASE_URL');
 
         if ($dsn === false || $dsn === '') {
-            self::markTestSkipped('Set FLUX_TEST_DATABASE_URL to run PostgreSQL repository integration tests.');
+            self::markTestSkipped('Set FLUXQ_TEST_DATABASE_URL to run PostgreSQL repository integration tests.');
         }
 
         $this->connection = Connection::fromDsn($dsn);
@@ -136,9 +136,9 @@ final class MessageRepositoryTest extends TestCase
                 'expiration' => '60000',
                 'message_id' => 'message-0027',
                 'timestamp' => 1777777777,
-                'type' => 'flux.test.message',
+                'type' => 'fluxq.test.message',
                 'user_id' => 'guest',
-                'app_id' => 'flux-pika-test',
+                'app_id' => 'fluxq-pika-test',
             ],
         ];
 
@@ -227,7 +227,7 @@ final class MessageRepositoryTest extends TestCase
 
         if (!str_contains(strtolower($database), 'test')) {
             self::markTestSkipped(sprintf(
-                'Refusing to reset PostgreSQL database "%s"; FLUX_TEST_DATABASE_URL must point to a test database.',
+                'Refusing to reset PostgreSQL database "%s"; FLUXQ_TEST_DATABASE_URL must point to a test database.',
                 $database
             ));
         }
