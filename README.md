@@ -1,4 +1,6 @@
-# FluxQ
+<p align="center">
+  <img src="docs/fluxq-logo.svg" alt="FluxQ" width="220">
+</p>
 
 FluxQ is a unified message broker built for reliability, extensibility, and interoperability, with a pure PHP core and PostgreSQL persistence.
 
